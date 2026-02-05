@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>You & Me 🖤</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #1a1a2e, #0f0c29, #000);
+  font-family: 'Cinzel', serif;
+  overflow: hidden;
+  color: white;
+}
+
+/* ENTRY SCREEN */
+#enter {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#enter button {
+  padding: 18px 48px;
+  font-size: 1.25rem;
+  border-radius: 45px;
+  border: none;
+  cursor: pointer;
+  background: crimson;
+  color: white;
+  box-shadow: 0 0 50px rgba(255,0,90,0.7);
+}
+
+/* MAIN CONTENT */
+.container {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card {
+  background: rgba(0,0,0,0.6);
+  padding: 65px;
+  border-radius: 35px;
+  box-shadow: 0 0 80px rgba(255,0,100,0.55);
+  max-width: 750px;
+}
+
+.heart {
+  font-size: 52px;
+  color: crimson;
+  animation: beat 1.3s infinite;
+}
+
+@keyframes beat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+#text {
+  font-size: 1.5rem;
+  line-height: 2;
+  margin-top: 28px;
+  white-space: pre-wrap;
+}
+
+/* PARTICLES */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  animation: drift 10s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateY(100vh); opacity: 0; }
+  to { transform: translateY(-10vh); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="enter">
+  <button onclick="startExperience()">Enter 🖤</button>
+</div>
+
+<audio id="darkMusic" loop>
+  <source src="dark-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="main">
+  <div class="card">
+    <div class="heart">🖤</div>
+    <div id="text"></div>
+  </div>
+</div>
+
+<script>
+/* Particles */
+for(let i=0;i<100;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*8+"s";
+  document.body.appendChild(p);
+}
+
+/* Start */
+function startExperience(){
+  document.getElementById("enter").style.display="none";
+  document.getElementById("main").style.display="flex";
+  document.getElementById("darkMusic").play();
+  typeText();
+}
+
+/* Typing */
+const message = `I don’t promise perfection.
+I promise presence.
+Loyalty.
+And a story that feels real,
+even on the quiet days.
+If you’re here,
+I’m all in.
+With you, it feels intentional.
+Calm. Strong. Real.
+If this is us,
+I’m not here halfway hopefully
+A VERY HAPPY VALENTINE'S DAY TO MY MAN :)).`;
+
+let i=0;
+function typeText(){
+  if(i<message.length){
+    document.getElementById("text").innerHTML+=message.charAt(i);
+    i++;
+    setTimeout(typeText,45);
+  }
+}
+</script>
+
+</body>
+</html>
